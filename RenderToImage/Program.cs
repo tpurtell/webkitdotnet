@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WebKit;
 
+//web kit on windows
+// has a nasty 2x2 pixel display because it requires a window host that i didnt figure out how to hide
 namespace RenderToImage
 {
     public class HiddenBrowser : Form, IWebKitBrowserHost

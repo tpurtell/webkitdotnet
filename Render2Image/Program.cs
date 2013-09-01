@@ -10,6 +10,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//native webbrowser control
+// ie on windows
+// fail on mac (no gluezilla)
 namespace RenderToImage
 {
     class Program
@@ -20,14 +23,11 @@ namespace RenderToImage
             if (args.Length < 2)
                 throw new Exception("missing args, need html file and png file");
 
-            if (!File.Exists(args[0]))
-                throw new Exception(string.Format("missing html file {0}", args[0]));
-
             if (Directory.Exists(args[1]))
                 throw new Exception(string.Format("png file is a directory {0}", args[1]));
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+//            Application.EnableVisualStyles();
+//            Application.SetCompatibleTextRenderingDefault(false);
             var wb = new WebBrowser();
             wb.Width = 512;
             wb.Height = 512;
@@ -42,8 +42,8 @@ namespace RenderToImage
                 Application.Exit();
             };
 
-            wb.Url = new Uri(Path.GetFullPath(args[0]));
-            //wb.Visible = true;
+            wb.Url = new Uri(args[0]);
+            wb.Visible = true;
             Application.Run();
         }
     }
